@@ -1,6 +1,6 @@
 {
   "name": "ember-validated-input",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Ember validated input addon",
   "keywords": [
     "component",
