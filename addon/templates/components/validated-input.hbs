@@ -1,0 +1,15 @@
+<input 
+  type={{type}} 
+  value={{get model valuePath}} 
+  oninput={{action "checkValidity" value="target.value"}}
+  onblur={{action "validateProperty" changeset valuePath}}
+  placeholder={{placeholder}} 
+  required={{required}}>
+
+{{#if (get changeset.error valuePath)}}
+  <ul>
+    {{#each (get (get changeset.error valuePath) "validation") as |message|}}
+      <li class="error">{{message}}</li>
+    {{/each}}
+  </ul>
+{{/if}}

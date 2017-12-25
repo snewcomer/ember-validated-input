@@ -1,0 +1,1 @@
+export { default } from 'ember-validated-input/components/validated-input';

@@ -1,3 +1,20 @@
-<h2 id="title">Welcome to Ember</h2>
-
 {{outlet}}
+
+{{#with (changeset model validations) as |changeset|}}
+  <form role="form" autocomplete=off class="new-event-form t-new-event-form" {{action "submitEvent" newEvent on="submit"}}>
+    {{validated-input 
+      model=model 
+      valuePath="title" 
+      changeset=changeset 
+      placeholder="Title" 
+      checkValidity=(action "checkValidity" changeset (changeset model validations) "title")
+    }}
+    <button 
+      role="button" 
+      type="submit" 
+      disabled={{if changeset.isInvalid "disabled"}} 
+      onclick={{action "validate" changeset}}>
+      SUBMIT
+    </button>
+  </form>
+{{/with}}

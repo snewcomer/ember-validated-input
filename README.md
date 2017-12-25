@@ -1,12 +1,19 @@
 # ember-validated-input
 
-This README outlines the details of collaborating on this Ember addon.
+Most likely you will want to take this as a blueprint for your own input. I currently use it in my own projects and is beta.
+
+NOTE: this addon depends on ember-changeset as a dependency in your own project to work.  Also this addon does not support its own styles.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-validated-input`
-* `npm install`
+`ember install ember-validated-input`
+
+## Usage
+
+```hbs
+{{#validated-input checkValidity=(action "checkValidity")}}
+{{/validated-input}}
+```
 
 ## Running
 
@@ -15,7 +22,7 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Running Tests
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
+* `yarn test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
