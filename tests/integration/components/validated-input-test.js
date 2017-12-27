@@ -21,14 +21,28 @@ module('Integration | Component | validated input', function(hooks) {
   });
 
   test('it renders required', async function(assert) {
-    assert.expect(1);
+    assert.expect(2);
     this.valuePath = VALUE_PATH;
     this.required = true;
     await render(hbs`{{validated-input valuePath=valuePath required=required checkValidity=checkValidity}}`);
     assert.equal(find('input').required, true, 'has required attr');
+    assert.equal(find('input').autofocus, false, 'autofocus default false');
   });
 
-  test('it renders type', async function(assert) {
+  test('autofocus works', async function(assert) {
+    assert.expect(1);
+    this.model = { 
+      title: ''
+    };
+    let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
+    this.changeset = new Changeset(this.model, validator);
+    this.valuePath = VALUE_PATH;
+    this.autofocus = true;
+    await render(hbs`{{validated-input model=model changeset=changeset valuePath=valuePath autofocus=autofocus checkValidity=checkValidity}}`);
+    assert.equal(find('input').autofocus, true, 'has autofocus');
+  });
+
+  test('type works', async function(assert) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
     this.required = true;

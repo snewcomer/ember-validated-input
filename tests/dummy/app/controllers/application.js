@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { action } from 'ember-decorators/object';
-import { set } from '@ember/object';
 
 import {
   validatePresence

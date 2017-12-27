@@ -27,6 +27,7 @@ export default Component.extend({
   classNames: ['validated-input'],
   type: 'text',
   required: false,
+  autofocus: false,
 
   actions: {
     /**

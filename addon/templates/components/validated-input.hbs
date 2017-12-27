@@ -4,6 +4,7 @@
   oninput={{action (action "checkValidity" changeset (changeset model validations "name")) value="target.value"}}
   onblur={{action "validateProperty" changeset valuePath}}
   placeholder={{placeholder}} 
+  autofocus={{autofocus}} 
   required={{required}}>
 
 {{#if (get changeset.error valuePath)}}
