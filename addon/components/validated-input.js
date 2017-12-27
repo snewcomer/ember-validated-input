@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import layout from '../templates/components/validated-input';
 import { get, set } from '@ember/object';
-import { assert } from '@ember/debug';
 
 /**
   `validated-input`
@@ -15,7 +14,6 @@ import { assert } from '@ember/debug';
     type="text" 
     placeholder="Name" 
     required=true
-    checkValidity=(action "checkValidity")
   }}
   ```
 
@@ -30,14 +28,6 @@ export default Component.extend({
   type: 'text',
   required: false,
 
-  didInsertElement() {
-    this._super(...arguments)
-
-    if (!get(this, 'checkValidity')) {
-      assert('You must pass an action `checkValidity`', get(this, 'checkValidity'));
-    }
-  },
-  
   actions: {
     /**
      * @method validateProperty 
@@ -49,15 +39,19 @@ export default Component.extend({
       set(changeset, valuePath, e.target.value);
       // return changeset.validate(valuePath);
     },
+
     /**
-     * outer component can check on-input
-     * optional
-     * @method checkValidity
+     * @method checkValidity 
+     * @param {Object} changeset 
+     * @param {Object} copyChangeset - using changeset helper
+     * @param {String} valuePath 
      * @param {String|Integer} value 
      */
-    checkValidity(value) {
-      if (get(this, 'checkValidity')) {
-        get(this, 'checkValidity')(value);
+    checkValidity(changeset, copyChangeset, value) {
+      const valuePath = get(this, 'valuePath');
+      set(copyChangeset, valuePath, value);
+      if (!copyChangeset.get(`error.${valuePath}`)) {
+        set(changeset, valuePath, value);
       }
     }
   }

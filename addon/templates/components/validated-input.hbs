@@ -1,7 +1,7 @@
 <input 
   type={{type}} 
   value={{get model valuePath}} 
-  oninput={{action "checkValidity" value="target.value"}}
+  oninput={{action (action "checkValidity" changeset (changeset model validations "name")) value="target.value"}}
   onblur={{action "validateProperty" changeset valuePath}}
   placeholder={{placeholder}} 
   required={{required}}>

@@ -33,23 +33,6 @@ export default class App extends Controller {
     });
   }
 
-  /**
-   * passed to validated-input components
-   * 
-   * @method checkValidity 
-   * @param {Object} changeset 
-   * @param {Object} copyChangeset - using changeset helper
-   * @param {String} valuePath 
-   * @param {String|Integer} value 
-   */
-  @action
-  checkValidity(changeset, copyChangeset, valuePath, value) {
-    set(copyChangeset, valuePath, value);
-    if (!copyChangeset.get(`error.${valuePath}`)) {
-      set(changeset, valuePath, value);
-    }
-  }
-
   @action
   submitEvent() {}
 }

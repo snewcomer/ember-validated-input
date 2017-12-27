@@ -15,7 +15,6 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(2);
     this.valuePath = VALUE_PATH;
     this.placeholder = VALUE_PATH;
-    this.checkValidity = () => {};
     await render(hbs`{{validated-input valuePath=valuePath placeholder=placeholder checkValidity=checkValidity}}`);
     assert.equal(find('input').getAttribute('placeholder'), VALUE_PATH);
     assert.equal(find('input').required, false, 'required is false');
@@ -25,7 +24,6 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
     this.required = true;
-    this.checkValidity = () => {};
     await render(hbs`{{validated-input valuePath=valuePath required=required checkValidity=checkValidity}}`);
     assert.equal(find('input').required, true, 'has required attr');
   });
@@ -34,24 +32,8 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
     this.required = true;
-    this.checkValidity = () => {};
     await render(hbs`{{validated-input valuePath=valuePath type="number" checkValidity=checkValidity}}`);
     assert.equal(find('input').type, 'number', 'has type set');
-  });
-
-  test('checkValidity is called on input', async function(assert) {
-    assert.expect(1);
-    this.model = { 
-      title: ''
-    };
-    let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
-    this.changeset = new Changeset(this.model, validator);
-    this.valuePath = VALUE_PATH;
-    this.checkValidity = () => {
-      assert.ok(true);
-    };
-    await render(hbs`{{validated-input changeset=changeset valuePath=valuePath checkValidity=checkValidity}}`);
-    await fillIn('input', 'wat');
   });
 
   test('renders error', async function(assert) {
@@ -61,7 +43,6 @@ module('Integration | Component | validated input', function(hooks) {
     let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
     this.changeset = new Changeset(this.model, validator);
     this.valuePath = VALUE_PATH;
-    this.checkValidity = () => {};
     await render(hbs`{{validated-input model=model changeset=changeset valuePath=valuePath checkValidity=checkValidity}}`);
     await fillIn('input', 'foo');
     await fillIn('input', '');
