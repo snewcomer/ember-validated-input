@@ -7,10 +7,12 @@
   autofocus={{autofocus}} 
   required={{required}}>
 
-{{#if (get changeset.error valuePath)}}
-  <ul>
-    {{#each (get (get changeset.error valuePath) "validation") as |message|}}
-      <li class="error">{{message}}</li>
-    {{/each}}
-  </ul>
+{{#if showError}}
+  {{#if (get changeset.error valuePath)}}
+    <ul>
+      {{#each (get (get changeset.error valuePath) "validation") as |message|}}
+        <li class="error">{{message}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
 {{/if}}

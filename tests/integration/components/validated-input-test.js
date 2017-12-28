@@ -63,4 +63,20 @@ module('Integration | Component | validated input', function(hooks) {
     await blur('input');
     assert.equal(find('.error').textContent.trim(), 'need a title');
   });
+
+  test('does not render error if false', async function(assert) {
+    this.model = { 
+      title: ''
+    };
+    this.showError = false;
+    let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
+    this.changeset = new Changeset(this.model, validator);
+    this.valuePath = VALUE_PATH;
+    await render(hbs`{{validated-input model=model showError=showError changeset=changeset valuePath=valuePath checkValidity=checkValidity}}`);
+    await fillIn('input', 'foo');
+    await fillIn('input', '');
+    await blur('input');
+    assert.equal(find('.error'), null);
+  });
+
 });

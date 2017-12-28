@@ -28,6 +28,7 @@ export default Component.extend({
   type: 'text',
   required: false,
   autofocus: false,
+  showError: true,
 
   actions: {
     /**
