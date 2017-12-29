@@ -39,6 +39,12 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
   - default false
 - autoresize 
   - textarea only, default true
+- readonly 
+  - default false
+- disabled 
+  - default false
+- autocomplete 
+  - default false
 - showError 
   - default true
 

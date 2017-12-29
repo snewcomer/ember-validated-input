@@ -6,16 +6,23 @@
     onblur={{action "validateProperty" changeset valuePath}}
     placeholder={{placeholder}} 
     autofocus={{autofocus}} 
+    readonly={{readonly}}
+    autocomplete={{autocomplete}}
+    disabled={{disabled}}
     required={{required}}>
 
 {{else}}
   {{textarea 
     value=(get model valuePath)
-    input=(action (action "checkValidity" changeset (changeset model validations "name")) value="target.value")
+    keyup=(action (action "checkValidity" changeset (changeset model validations "name")) value="target.value")
     focusOut=(action "validateProperty" changeset valuePath)
     placeholder=placeholder
     autofocus=autofocus
+    readonly=readonly
+    disabled=disabled
+    autocomplete=autocomplete
     autoresize=true
+    aria-multiline="true"
     required=required}}
 
 {{/unless}}

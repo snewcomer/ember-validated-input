@@ -12,12 +12,13 @@ module('Integration | Component | validated input', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    assert.expect(2);
+    assert.expect(3);
     this.valuePath = VALUE_PATH;
     this.placeholder = VALUE_PATH;
     await render(hbs`{{validated-input valuePath=valuePath placeholder=placeholder}}`);
     assert.equal(find('input').getAttribute('placeholder'), VALUE_PATH);
     assert.equal(find('input').required, false, 'required is false');
+    assert.equal(find('input').autocomplete, "false", 'autocomplete is false');
   });
 
   test('it renders textarea', async function(assert) {
@@ -36,6 +37,22 @@ module('Integration | Component | validated input', function(hooks) {
     await render(hbs`{{validated-input valuePath=valuePath required=required}}`);
     assert.equal(find('input').required, true, 'has required attr');
     assert.equal(find('input').autofocus, false, 'autofocus default false');
+  });
+
+  test('it renders disabled', async function(assert) {
+    assert.expect(1);
+    this.valuePath = VALUE_PATH;
+    this.disabled = "disabled";
+    await render(hbs`{{validated-input valuePath=valuePath disabled=disabled}}`);
+    assert.equal(find('input').disabled, true, 'has required attr');
+  });
+
+  test('textarea renders disabled', async function(assert) {
+    assert.expect(1);
+    this.valuePath = VALUE_PATH;
+    this.disabled = "disabled";
+    await render(hbs`{{validated-input valuePath=valuePath textarea=true disabled=disabled}}`);
+    assert.equal(find('textarea').disabled, true, 'has required attr');
   });
 
   test('autofocus works', async function(assert) {
