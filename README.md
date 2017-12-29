@@ -11,9 +11,32 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
 ## Usage
 
 ```hbs
-{{#validated-input checkValidity=(action "checkValidity")}}
-{{/validated-input}}
+{{validated-input 
+  model=model
+  valuePath="username"
+  changeset=changeset
+  required=true
+  placeholder="Username"
+}}
 ```
+
+### API
+
+- required 
+  - default false
+- model 
+  - Ember Data model or plain pojo
+- valuePath 
+  - value defined on the model
+- changeset 
+  - a valid Changeset from ember-changeset
+- placeholder
+- type 
+  - default "text"
+- autofocus 
+  - default false
+- showError 
+  - default true
 
 ## Running
 
