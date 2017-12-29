@@ -33,8 +33,12 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
 - placeholder
 - type 
   - default "text"
+- textarea 
+  - default false
 - autofocus 
   - default false
+- autoresize 
+  - textarea only, default true
 - showError 
   - default true
 

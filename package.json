@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "ember-cli-babel": "^6.11.0",
-    "ember-cli-htmlbars": "^2.0.1"
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-autoresize": "^1.0.0"
   },
   "devDependencies": {
     "@ember-decorators/babel-transforms": "^0.1.1",

@@ -6,12 +6,14 @@ import {
 } from 'ember-changeset-validations/validators';
 
 const NEW_MODEL = {
-  title: validatePresence(true)
+  title: validatePresence(true),
+  name: validatePresence(true)
 }
 
 export default class App extends Controller {
   model = {
-    title: ''
+    title: '',
+    name: ''
   }
   
   validations = NEW_MODEL;

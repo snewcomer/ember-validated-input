@@ -9,6 +9,20 @@
       placeholder="Title" 
       autofocus=true
     }}
+    {{validated-input 
+      model=model 
+      valuePath="email" 
+      type="email"
+      changeset=changeset 
+      placeholder="Email" 
+    }}
+    {{validated-input 
+      model=model 
+      valuePath="name" 
+      changeset=changeset 
+      placeholder="Name" 
+      textarea=true
+    }}
     <button 
       role="button" 
       type="submit" 
