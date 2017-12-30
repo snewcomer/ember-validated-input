@@ -47,6 +47,14 @@ module('Integration | Component | validated input', function(hooks) {
     assert.equal(find('input').disabled, true, 'has required attr');
   });
 
+  test('it renders id', async function(assert) {
+    assert.expect(1);
+    this.valuePath = VALUE_PATH;
+    this.inputId = "password";
+    await render(hbs`{{validated-input valuePath=valuePath inputId=inputId}}`);
+    assert.equal(find('#password').id, 'password', 'has id attr');
+  });
+
   test('it renders name', async function(assert) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
@@ -63,6 +71,21 @@ module('Integration | Component | validated input', function(hooks) {
     assert.equal(find('textarea').disabled, true, 'has required attr');
   });
 
+  test('textarea renders name', async function(assert) {
+    assert.expect(1);
+    this.valuePath = VALUE_PATH;
+    this.name = "wat";
+    await render(hbs`{{validated-input valuePath=valuePath textarea=true name=name}}`);
+    assert.equal(find('textarea').name, 'wat', 'has name attr');
+  });
+
+  test('textarea renders id', async function(assert) {
+    assert.expect(1);
+    this.valuePath = VALUE_PATH;
+    this.inputId = "wat";
+    await render(hbs`{{validated-input valuePath=valuePath textarea=true inputId=inputId}}`);
+    assert.equal(find('#wat').id, 'wat', 'has name attr');
+  });
   test('autofocus works', async function(assert) {
     assert.expect(1);
     this.model = { 

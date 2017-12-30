@@ -34,6 +34,7 @@ export default Component.extend({
   autofocus: false,
   showError: true,
   name: null,
+  inputId: null,
 
   actions: {
     /**
