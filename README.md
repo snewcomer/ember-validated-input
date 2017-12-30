@@ -45,6 +45,8 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
   - default false
 - autocomplete 
   - default false
+- name 
+  - default null
 - showError 
   - default true
 

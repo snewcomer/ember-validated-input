@@ -47,6 +47,14 @@ module('Integration | Component | validated input', function(hooks) {
     assert.equal(find('input').disabled, true, 'has required attr');
   });
 
+  test('it renders name', async function(assert) {
+    assert.expect(1);
+    this.valuePath = VALUE_PATH;
+    this.name = "email";
+    await render(hbs`{{validated-input valuePath=valuePath name=name}}`);
+    assert.equal(find('[name=email]').name, 'email', 'has name attr');
+  });
+
   test('textarea renders disabled', async function(assert) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;

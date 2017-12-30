@@ -33,6 +33,7 @@ export default Component.extend({
   required: false,
   autofocus: false,
   showError: true,
+  name: null,
 
   actions: {
     /**
