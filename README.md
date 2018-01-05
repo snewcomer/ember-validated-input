@@ -28,6 +28,7 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
   - Ember Data model or plain pojo
 - valuePath 
   - value defined on the model
+  - also create #id on element
 - changeset 
   - a valid Changeset from ember-changeset
 - placeholder
@@ -46,8 +47,6 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
 - autocomplete 
   - default false
 - name 
-  - default null
-- inputId 
   - default null
 - showError 
   - default true

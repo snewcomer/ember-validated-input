@@ -27,11 +27,10 @@ export default class App extends Controller {
    */
   @action
   validate(changeset) {
-    return changeset.validate().then(() => {
-      if (changeset.get('isValid')) {
-        changeset.execute();
-      }
-    });
+    changeset.validate();
+    if (changeset.get('isValid')) {
+      changeset.execute();
+    }
   }
 
   @action

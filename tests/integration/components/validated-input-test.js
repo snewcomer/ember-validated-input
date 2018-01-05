@@ -50,9 +50,8 @@ module('Integration | Component | validated input', function(hooks) {
   test('it renders id', async function(assert) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
-    this.inputId = "password";
-    await render(hbs`{{validated-input valuePath=valuePath inputId=inputId}}`);
-    assert.equal(find('#password').id, 'password', 'has id attr');
+    await render(hbs`{{validated-input valuePath=valuePath}}`);
+    assert.equal(find('#title').id, 'title', 'has id attr');
   });
 
   test('it renders name', async function(assert) {
@@ -82,9 +81,8 @@ module('Integration | Component | validated input', function(hooks) {
   test('textarea renders id', async function(assert) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
-    this.inputId = "wat";
-    await render(hbs`{{validated-input valuePath=valuePath textarea=true inputId=inputId}}`);
-    assert.equal(find('#wat').id, 'wat', 'has name attr');
+    await render(hbs`{{validated-input valuePath=valuePath textarea=true}}`);
+    assert.equal(find('#title').id, 'title', 'has id attr');
   });
   test('autofocus works', async function(assert) {
     assert.expect(1);
