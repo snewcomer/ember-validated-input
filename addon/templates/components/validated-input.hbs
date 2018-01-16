@@ -1,4 +1,7 @@
 {{#unless textarea}}
+  {{#if label}}
+    <label for={{valuePath}}>{{label}}</label>
+  {{/if}}
   <input 
     type={{type}} 
     value={{get model valuePath}} 

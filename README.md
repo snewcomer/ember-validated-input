@@ -31,6 +31,8 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
   - also create #id on element
 - changeset 
   - a valid Changeset from ember-changeset
+- label 
+  - add you own css for the label to be hidden if need be (https://www.w3.org/WAI/tutorials/forms/labels/)
 - placeholder
 - type 
   - default "text"

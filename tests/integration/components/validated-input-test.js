@@ -12,13 +12,15 @@ module('Integration | Component | validated input', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    assert.expect(3);
+    assert.expect(4);
+    this.label = 'heyo';
     this.valuePath = VALUE_PATH;
     this.placeholder = VALUE_PATH;
-    await render(hbs`{{validated-input valuePath=valuePath placeholder=placeholder}}`);
+    await render(hbs`{{validated-input label=label valuePath=valuePath placeholder=placeholder}}`);
     assert.equal(find('input').getAttribute('placeholder'), VALUE_PATH);
     assert.equal(find('input').required, false, 'required is false');
-    assert.equal(find('input').autocomplete, "false", 'autocomplete is false');
+    assert.equal(find('input').autocomplete, 'false', 'autocomplete is false');
+    assert.equal(find('label').textContent, 'heyo', 'label works');
   });
 
   test('it renders textarea', async function(assert) {
