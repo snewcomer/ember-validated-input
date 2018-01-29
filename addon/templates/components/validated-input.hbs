@@ -1,14 +1,14 @@
+{{#if label}}
+  <label for={{valuePath}}>{{label}}</label>
+{{/if}}
 {{#unless textarea}}
-  {{#if label}}
-    <label for={{valuePath}}>{{label}}</label>
-  {{/if}}
-  <input 
-    type={{type}} 
-    value={{get model valuePath}} 
+  <input
+    type={{type}}
+    value={{get model valuePath}}
     oninput={{action (action "checkValidity" changeset (changeset model validations "name")) value="target.value"}}
     onblur={{action "validateProperty" changeset valuePath}}
-    placeholder={{placeholder}} 
-    autofocus={{autofocus}} 
+    placeholder={{placeholder}}
+    autofocus={{autofocus}}
     readonly={{readonly}}
     autocomplete={{autocomplete}}
     disabled={{disabled}}
@@ -17,7 +17,7 @@
     required={{required}}>
 
 {{else}}
-  {{textarea 
+  {{textarea
     value=(get model valuePath)
     keyup=(action (action "checkValidity" changeset (changeset model validations "name")) value="target.value")
     focusOut=(action "validateProperty" changeset valuePath)

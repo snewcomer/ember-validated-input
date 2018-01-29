@@ -2,32 +2,40 @@
 
 {{#with (changeset model validations) as |changeset|}}
   <form role="form" autocomplete=off class="new-event-form t-new-event-form" {{action "submitEvent" newEvent on="submit"}}>
-    {{validated-input 
-      model=model 
-      valuePath="title" 
-      changeset=changeset 
-      placeholder="Title" 
+    {{validated-input
+      model=model
+      valuePath="title"
+      changeset=changeset
+      placeholder="Title"
       autofocus=true
     }}
-    {{validated-input 
-      model=model 
-      valuePath="email" 
+    {{validated-input
+      model=model
+      valuePath="email"
       type="email"
-      changeset=changeset 
-      placeholder="Email" 
+      changeset=changeset
+      placeholder="Email"
       name="email"
     }}
-    {{validated-input 
-      model=model 
-      valuePath="name" 
-      changeset=changeset 
-      placeholder="Name" 
+    {{validated-input
+      model=model
+      valuePath="name"
+      changeset=changeset
+      placeholder="Name"
       textarea=true
     }}
-    <button 
-      role="button" 
-      type="submit" 
-      disabled={{if changeset.isInvalid "disabled"}} 
+    {{validated-input
+      model=model
+      valuePath="name"
+      changeset=changeset
+      placeholder="Name"
+      label="Name"
+      textarea=true
+    }}
+    <button
+      role="button"
+      type="submit"
+      disabled={{if changeset.isInvalid "disabled"}}
       onclick={{action "validate" changeset}}>
       SUBMIT
     </button>
