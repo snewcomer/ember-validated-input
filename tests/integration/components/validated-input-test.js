@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from 'ember-test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { find, fillIn, blur } from 'ember-native-dom-helpers';
+import { find, fillIn, blur } from '@ember/test-helpers';
 import Changeset from 'ember-changeset';
 import { isPresent } from '@ember/utils';
 
@@ -88,7 +88,7 @@ module('Integration | Component | validated input', function(hooks) {
   });
   test('autofocus works', async function(assert) {
     assert.expect(1);
-    this.model = { 
+    this.model = {
       title: ''
     };
     let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
@@ -115,7 +115,7 @@ module('Integration | Component | validated input', function(hooks) {
   });
 
   test('renders error', async function(assert) {
-    this.model = { 
+    this.model = {
       title: ''
     };
     let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
@@ -129,7 +129,7 @@ module('Integration | Component | validated input', function(hooks) {
   });
 
   test('textarea renders error', async function(assert) {
-    this.model = { 
+    this.model = {
       title: ''
     };
     let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
@@ -143,7 +143,7 @@ module('Integration | Component | validated input', function(hooks) {
   });
 
   test('does not render error if false', async function(assert) {
-    this.model = { 
+    this.model = {
       title: ''
     };
     this.showError = false;

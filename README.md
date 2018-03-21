@@ -1,5 +1,5 @@
-# ember-validated-input
-
+ember-validated-input
+==============================================================================
 Most likely you will want to take this as a blueprint for your own input. I currently use it in my own projects and is beta.
 
 NOTE: this addon depends on ember-changeset as a dependency in your own project to work.  Also this addon does not support its own styles.
@@ -11,7 +11,7 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
 ## Usage
 
 ```hbs
-{{validated-input 
+{{validated-input
   model=model
   valuePath="username"
   changeset=changeset
@@ -22,50 +22,79 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
 
 ### API
 
-- required 
+- required
   - default false
-- model 
+- model
   - Ember Data model or plain pojo
-- valuePath 
+- valuePath
   - value defined on the model
   - also create #id on element
-- changeset 
+- changeset
   - a valid Changeset from ember-changeset
-- label 
+- label
   - add you own css for the label to be hidden if need be (https://www.w3.org/WAI/tutorials/forms/labels/)
 - placeholder
-- type 
+- type
   - default "text"
-- textarea 
+- textarea
   - default false
-- autofocus 
+- autofocus
   - default false
-- autoresize 
+- autoresize
   - textarea only, default true
-- readonly 
+- readonly
   - default false
-- disabled 
+- disabled
   - default false
-- autocomplete 
+- autocomplete
   - default false
-- name 
+- name
   - default null
-- showError 
+- showError
   - default true
 
-## Running
+Installation
+------------------------------------------------------------------------------
+
+```
+ember install ember-validated-input
+```
+
+
+Usage
+------------------------------------------------------------------------------
+
+[Longer description of how to use the addon in apps.]
+
+
+Contributing
+------------------------------------------------------------------------------
+
+### Installation
+
+* `git clone <repository-url>`
+* `cd ember-validated-input`
+* `yarn install`
+
+### Linting
+
+* `yarn lint:js`
+* `yarn lint:js --fix`
+
+### Running tests
+
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `yarn test` – Runs `ember try:each` to test your addon against multiple Ember versions
+
+### Running the dummy application
 
 * `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-## Running Tests
-
-* `yarn test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
