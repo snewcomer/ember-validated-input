@@ -8,11 +8,11 @@ import { get, set } from '@ember/object';
   ## default usage
 
   ```handlebars
-  {{validated-input 
-    changeset=changeset 
-    valuePath="name" 
-    type="text" 
-    placeholder="Name" 
+  {{validated-input
+    changeset=changeset
+    valuePath="name"
+    type="text"
+    placeholder="Name"
     required=true
   }}
   ```
@@ -37,22 +37,28 @@ export default Component.extend({
 
   actions: {
     /**
-     * @method validateProperty 
-     * @param {Object} changeset 
-     * @param {String} valuePath 
-     * @param {Object} e 
+     * @method validateProperty
+     * @param {Object} changeset
+     * @param {String} valuePath
+     * @param {Object} e
      */
     validateProperty(changeset, valuePath, e) {
       set(changeset, valuePath, e.target.value);
+      if (get(this, 'onBlur')) {
+        get(this, 'onBlur')(e);
+      }
+      if (get(this, 'onInput')) {
+        get(this, 'onInput')(e);
+      }
       // return changeset.validate(valuePath);
     },
 
     /**
-     * @method checkValidity 
-     * @param {Object} changeset 
+     * @method checkValidity
+     * @param {Object} changeset
      * @param {Object} copyChangeset - using changeset helper
-     * @param {String} valuePath 
-     * @param {String|Integer} value 
+     * @param {String} valuePath
+     * @param {String|Integer} value
      */
     checkValidity(changeset, copyChangeset, value) {
       const valuePath = get(this, 'valuePath');

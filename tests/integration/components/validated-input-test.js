@@ -86,6 +86,7 @@ module('Integration | Component | validated input', function(hooks) {
     await render(hbs`{{validated-input valuePath=valuePath textarea=true}}`);
     assert.equal(find('#title').id, 'title', 'has id attr');
   });
+
   test('autofocus works', async function(assert) {
     assert.expect(1);
     this.model = {
@@ -126,6 +127,37 @@ module('Integration | Component | validated input', function(hooks) {
     await fillIn('input', '');
     await blur('input');
     assert.equal(find('.error').textContent.trim(), 'need a title');
+  });
+
+  test('calls onBlur', async function(assert) {
+    assert.ok(true);
+    this.model = {
+      title: ''
+    };
+    this.onBlur = (evt) => {
+      assert.ok(evt, 'evt passed');
+    };
+    let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
+    this.changeset = new Changeset(this.model, validator);
+    this.valuePath = VALUE_PATH;
+    await render(hbs`{{validated-input model=model changeset=changeset valuePath=valuePath onBlur=onBlur}}`);
+    await fillIn('input', 'foo');
+    await blur('input');
+  });
+
+  test('calls onInput', async function(assert) {
+    assert.ok(true);
+    this.model = {
+      title: ''
+    };
+    this.onInput = (evt) => {
+      assert.ok(evt, 'evt passed');
+    };
+    let validator = ({ newValue }) => isPresent(newValue) || ['need a title'];
+    this.changeset = new Changeset(this.model, validator);
+    this.valuePath = VALUE_PATH;
+    await render(hbs`{{validated-input model=model changeset=changeset valuePath=valuePath onInput=onInput}}`);
+    await fillIn('input', 'foo');
   });
 
   test('textarea renders error', async function(assert) {
