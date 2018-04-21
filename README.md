@@ -52,6 +52,8 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
   - default null
 - showError
   - default true
+- eagerCheck
+  - default false
 
 Installation
 ------------------------------------------------------------------------------

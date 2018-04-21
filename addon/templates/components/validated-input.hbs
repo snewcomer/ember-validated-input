@@ -12,6 +12,7 @@
     readonly={{readonly}}
     autocomplete={{autocomplete}}
     disabled={{disabled}}
+    autocomplete={{autocomplete}}
     name={{name}}
     id={{valuePath}}
     required={{required}}>
@@ -34,7 +35,7 @@
 
 {{/unless}}
 
-{{#if showError}}
+{{#if showErrors}}
   {{#if (get changeset.error valuePath)}}
     <ul>
       {{#each (get (get changeset.error valuePath) "validation") as |message|}}

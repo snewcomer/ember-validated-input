@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import layout from '../templates/components/validated-input';
 import { get, set } from '@ember/object';
+import { and, reads } from '@ember/object/computed';
 
 /**
   `validated-input`
@@ -33,7 +34,11 @@ export default Component.extend({
   required: false,
   autofocus: false,
   showError: true,
+  eagerCheck: false,
   name: null,
+
+  _eagerCheck: reads('eagerCheck'),
+  showErrors: and('showError', 'changeset.isInvalid'),
 
   actions: {
     /**
@@ -50,6 +55,9 @@ export default Component.extend({
       if (get(this, 'onInput')) {
         get(this, 'onInput')(e);
       }
+      if (!get(this, 'eagerCheck') && changeset.get('isInvalid')) {
+        set(this, 'eagerCheck', true);
+      }
       // return changeset.validate(valuePath);
     },
 
@@ -61,10 +69,15 @@ export default Component.extend({
      * @param {String|Integer} value
      */
     checkValidity(changeset, copyChangeset, value) {
-      const valuePath = get(this, 'valuePath');
-      set(copyChangeset, valuePath, value);
-      if (!copyChangeset.get(`error.${valuePath}`)) {
-        set(changeset, valuePath, value);
+      if (get(this, 'eagerCheck')) {
+        const valuePath = get(this, 'valuePath');
+        set(copyChangeset, valuePath, value);
+        if (!copyChangeset.get(`error.${valuePath}`)) {
+          set(changeset, valuePath, value);
+        }
+        if (!get(this, '_eagerCheck') && !changeset.get('isInvalid')) {
+          set(this, 'eagerCheck', false);
+        }
       }
     }
   }
