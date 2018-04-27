@@ -2,12 +2,19 @@ import Controller from '@ember/controller';
 import { action } from 'ember-decorators/object';
 
 import {
-  validatePresence
+  validatePresence,
+  validateLength,
+  validateConfirmation
 } from 'ember-changeset-validations/validators';
 
 const NEW_MODEL = {
   title: validatePresence(true),
-  name: validatePresence(true)
+  name: validatePresence(true),
+  password: validatePresence(true),
+  passwordConfirmation: [
+    validateLength({ min: 6 }),
+    validateConfirmation({ on: 'password' })
+  ]
 }
 
 export default class App extends Controller {

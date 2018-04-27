@@ -19,6 +19,22 @@
     }}
     {{validated-input
       model=model
+      valuePath="password"
+      type="password"
+      changeset=changeset
+      placeholder="password"
+      name="password"
+    }}
+    {{validated-input
+      model=model
+      valuePath="passwordConfirmation"
+      type="password"
+      changeset=changeset
+      placeholder="password confirmation"
+      name="passwordConfirmation"
+    }}
+    {{validated-input
+      model=model
       valuePath="name"
       changeset=changeset
       placeholder="Name"
@@ -26,10 +42,10 @@
     }}
     {{validated-input
       model=model
-      valuePath="name"
+      valuePath="first_name"
       changeset=changeset
-      placeholder="Name"
-      label="Name"
+      placeholder="First Name"
+      label="First Name"
       textarea=true
     }}
     <button

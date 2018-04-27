@@ -16,7 +16,8 @@ module('Integration | Component | validated input', function(hooks) {
     this.label = 'heyo';
     this.valuePath = VALUE_PATH;
     this.placeholder = VALUE_PATH;
-    await render(hbs`{{validated-input label=label valuePath=valuePath placeholder=placeholder}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input label=label valuePath=valuePath placeholder=placeholder model=model}}`);
     assert.equal(find('input').getAttribute('placeholder'), VALUE_PATH);
     assert.equal(find('input').required, false, 'required is false');
     assert.equal(find('input').autocomplete, 'false', 'autocomplete is false');
@@ -27,7 +28,8 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(2);
     this.valuePath = VALUE_PATH;
     this.placeholder = VALUE_PATH;
-    await render(hbs`{{validated-input valuePath=valuePath placeholder=placeholder textarea=true}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input valuePath=valuePath placeholder=placeholder textarea=true model=model}}`);
     assert.equal(find('textarea').getAttribute('placeholder'), VALUE_PATH);
     assert.equal(find('textarea').required, false, 'required is false');
   });
@@ -36,7 +38,8 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(2);
     this.valuePath = VALUE_PATH;
     this.required = true;
-    await render(hbs`{{validated-input valuePath=valuePath required=required}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input valuePath=valuePath required=required model=model}}`);
     assert.equal(find('input').required, true, 'has required attr');
     assert.equal(find('input').autofocus, false, 'autofocus default false');
   });
@@ -45,14 +48,16 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
     this.disabled = "disabled";
-    await render(hbs`{{validated-input valuePath=valuePath disabled=disabled}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input model=model valuePath=valuePath disabled=disabled}}`);
     assert.equal(find('input').disabled, true, 'has required attr');
   });
 
   test('it renders id', async function(assert) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
-    await render(hbs`{{validated-input valuePath=valuePath}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input model=model valuePath=valuePath}}`);
     assert.equal(find('#title').id, 'title', 'has id attr');
   });
 
@@ -60,7 +65,8 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
     this.name = "email";
-    await render(hbs`{{validated-input valuePath=valuePath name=name}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input model=model valuePath=valuePath name=name}}`);
     assert.equal(find('[name=email]').name, 'email', 'has name attr');
   });
 
@@ -68,7 +74,8 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
     this.disabled = "disabled";
-    await render(hbs`{{validated-input valuePath=valuePath textarea=true disabled=disabled}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input model=model valuePath=valuePath textarea=true disabled=disabled}}`);
     assert.equal(find('textarea').disabled, true, 'has required attr');
   });
 
@@ -76,14 +83,16 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
     this.name = "wat";
-    await render(hbs`{{validated-input valuePath=valuePath textarea=true name=name}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input model=model valuePath=valuePath textarea=true name=name}}`);
     assert.equal(find('textarea').name, 'wat', 'has name attr');
   });
 
   test('textarea renders id', async function(assert) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
-    await render(hbs`{{validated-input valuePath=valuePath textarea=true}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input model=model valuePath=valuePath textarea=true}}`);
     assert.equal(find('#title').id, 'title', 'has id attr');
   });
 
@@ -104,14 +113,16 @@ module('Integration | Component | validated input', function(hooks) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
     this.required = true;
-    await render(hbs`{{validated-input valuePath=valuePath type="number"}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input model=model valuePath=valuePath type="number"}}`);
     assert.equal(find('input').type, 'number', 'has type set');
   });
 
   test('textarea works', async function(assert) {
     assert.expect(1);
     this.valuePath = VALUE_PATH;
-    await render(hbs`{{validated-input valuePath=valuePath textarea=true}}`);
+    this.model = { name: '' };
+    await render(hbs`{{validated-input model=model valuePath=valuePath textarea=true}}`);
     assert.equal(find('textarea').type, 'textarea', 'has textarea');
   });
 
