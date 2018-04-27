@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "@ember-decorators/babel-transforms": "^0.1.1",
-    "@ember/test-helpers": "^0.7.20",
     "babel-eslint": "^8.1.1",
     "broccoli-asset-rev": "^2.4.5",
     "ember-changeset": "^1.4.1",
