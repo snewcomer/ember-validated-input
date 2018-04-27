@@ -1,6 +1,10 @@
+import Ember from 'ember';
 import Component from '@ember/component';
 import layout from '../templates/components/validated-input';
 import { get, set } from '@ember/object';
+import { task, timeout } from 'ember-concurrency';
+
+const DEBOUNCE_TIMEOUT = Ember.testing ? 10 : 400;
 
 /**
   `validated-input`
@@ -35,6 +39,14 @@ export default Component.extend({
   showError: true,
   name: null,
 
+  _checkValidity: task(function* (changeset, copyChangeset, valuePath, value) {
+    yield timeout(DEBOUNCE_TIMEOUT);
+    set(copyChangeset, valuePath, value);
+    if (!copyChangeset.get(`error.${valuePath}`)) {
+      set(changeset, valuePath, value);
+    }
+  }).restartable(),
+
   actions: {
     /**
      * @method validateProperty
@@ -62,10 +74,7 @@ export default Component.extend({
      */
     checkValidity(changeset, copyChangeset, value) {
       const valuePath = get(this, 'valuePath');
-      set(copyChangeset, valuePath, value);
-      if (!copyChangeset.get(`error.${valuePath}`)) {
-        set(changeset, valuePath, value);
-      }
+      get(this, '_checkValidity').perform(changeset, copyChangeset, valuePath, value);
     }
   }
 });
