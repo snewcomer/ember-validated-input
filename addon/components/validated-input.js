@@ -29,6 +29,7 @@ export default Component.extend({
   layout,
 
   classNames: ['validated-input'],
+  classNameBindings: ['showError:validated-input--error'],
   type: 'text',
   textarea: false,
   disabled: false,
