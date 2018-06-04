@@ -29,7 +29,7 @@ export default Component.extend({
   layout,
 
   classNames: ['validated-input'],
-  classNameBindings: ['showError:validated-input--error'],
+  classNameBindings: ['hasError:validated-input--error'],
   type: 'text',
   textarea: false,
   disabled: false,
@@ -38,6 +38,7 @@ export default Component.extend({
   required: false,
   autofocus: false,
   showError: true,
+  hasError: false,
   name: null,
 
   _checkValidity: task(function* (changeset, copyChangeset, valuePath, value) {
@@ -45,6 +46,7 @@ export default Component.extend({
     set(copyChangeset, valuePath, value);
     if (!copyChangeset.get(`error.${valuePath}`)) {
       set(changeset, valuePath, value);
+      set(this, 'hasError', false);
     }
   }).restartable(),
 
@@ -57,6 +59,13 @@ export default Component.extend({
      */
     validateProperty(changeset, valuePath, e) {
       set(changeset, valuePath, e.target.value);
+
+      if (changeset.errors.length > 0) {
+        set(this, 'hasError', true);
+      } else {
+        set(this, 'hasError', false);
+      }
+
       if (get(this, 'onBlur')) {
         get(this, 'onBlur')(e);
       }
