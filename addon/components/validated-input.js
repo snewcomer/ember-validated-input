@@ -60,7 +60,7 @@ export default Component.extend({
     validateProperty(changeset, valuePath, e) {
       set(changeset, valuePath, e.target.value);
 
-      if (changeset.errors.length > 0) {
+      if (changeset.get(`error.${valuePath}`)) {
         set(this, 'hasError', true);
       } else {
         set(this, 'hasError', false);
