@@ -5,7 +5,8 @@
   "keywords": [
     "component",
     "ember-addon",
-    "input"
+    "input",
+    "validation"
   ],
   "license": "MIT",
   "files": [
