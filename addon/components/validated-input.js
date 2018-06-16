@@ -33,7 +33,7 @@ export default Component.extend({
   type: 'text',
   textarea: false,
   disabled: false,
-  autocomplete: false,
+  autocomplete: 'off',
   readonly: false,
   required: false,
   autofocus: false,
