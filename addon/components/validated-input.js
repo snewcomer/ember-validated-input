@@ -41,12 +41,13 @@ export default Component.extend({
   hasError: false,
   name: null,
 
-  _checkValidity: task(function* (changeset, copyChangeset, valuePath, value) {
+  _checkValidity: task(function* (changeset, snapshot, valuePath, value) {
     yield timeout(DEBOUNCE_TIMEOUT);
-    set(copyChangeset, valuePath, value);
-    if (!copyChangeset.get(`error.${valuePath}`)) {
-      set(changeset, valuePath, value);
+    set(changeset, valuePath, value);
+    if (!changeset.get(`error.${valuePath}`)) {
       set(this, 'hasError', false);
+    } else {
+      changeset.restore(snapshot);
     }
   }).restartable(),
 
@@ -78,13 +79,11 @@ export default Component.extend({
     /**
      * @method checkValidity
      * @param {Object} changeset
-     * @param {Object} copyChangeset - using changeset helper
-     * @param {String} valuePath
      * @param {String|Integer} value
      */
-    checkValidity(changeset, copyChangeset, value) {
+    checkValidity(changeset, value) {
       const valuePath = get(this, 'valuePath');
-      get(this, '_checkValidity').perform(changeset, copyChangeset, valuePath, value);
+      get(this, '_checkValidity').perform(changeset, changeset.snapshot(), valuePath, value);
     }
   }
 });
