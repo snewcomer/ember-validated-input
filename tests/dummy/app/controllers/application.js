@@ -18,12 +18,11 @@ const NEW_MODEL = {
 }
 
 export default class App extends Controller {
-  model = {
-    title: '',
-    name: ''
+  init(...args) {
+    super.init(...args);
+    this.validations = NEW_MODEL;
+    this.model = { title: '', name: '' };
   }
-
-  validations = NEW_MODEL;
 
   /**
    * called when hitting enter or clicking button

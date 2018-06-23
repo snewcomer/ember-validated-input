@@ -4,7 +4,7 @@ import layout from '../templates/components/validated-input';
 import { get, set } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
-const DEBOUNCE_TIMEOUT = Ember.testing ? 10 : 200;
+const DEBOUNCE_TIMEOUT = Ember.testing ? 10 : 150;
 
 /**
   `validated-input`

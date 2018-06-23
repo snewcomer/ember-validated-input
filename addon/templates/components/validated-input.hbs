@@ -5,7 +5,7 @@
   <input
     type={{type}}
     value={{get model valuePath}}
-    oninput={{action (action "checkValidity" changeset (changeset model validations "name")) value="target.value"}}
+    oninput={{action (action "checkValidity" changeset (changeset model validations)) value="target.value"}}
     onblur={{action "validateProperty" changeset valuePath}}
     placeholder={{placeholder}}
     autofocus={{autofocus}}
@@ -19,7 +19,7 @@
 {{else}}
   {{textarea
     value=(get model valuePath)
-    keyup=(action (action "checkValidity" changeset (changeset model validations "name")) value="target.value")
+    keyup=(action (action "checkValidity" changeset (changeset model validations)) value="target.value")
     focusOut=(action "validateProperty" changeset valuePath)
     placeholder=placeholder
     autofocus=autofocus

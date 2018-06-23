@@ -20,7 +20,7 @@ module('Integration | Component | validated input', function(hooks) {
     await render(hbs`{{validated-input label=label valuePath=valuePath placeholder=placeholder model=model}}`);
     assert.equal(find('input').getAttribute('placeholder'), VALUE_PATH);
     assert.equal(find('input').required, false, 'required is false');
-    assert.equal(find('input').autocomplete, 'false', 'autocomplete is false');
+    assert.equal(find('input').autocomplete, 'off', 'autocomplete is off');
     assert.equal(find('label').textContent, 'heyo', 'label works');
   });
 
