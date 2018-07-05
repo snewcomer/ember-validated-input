@@ -38,6 +38,12 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
   - default "text"
 - textarea
   - default false
+- autocapitalize
+  - default 'none'
+- autocomplete
+  - default 'off'
+- autocorrect
+  - default 'off'
 - autofocus
   - default false
 - autoresize
@@ -45,8 +51,6 @@ NOTE: this addon depends on ember-changeset as a dependency in your own project 
 - readonly
   - default false
 - disabled
-  - default false
-- autocomplete
   - default false
 - name
   - default null
