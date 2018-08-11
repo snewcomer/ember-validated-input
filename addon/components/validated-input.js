@@ -44,12 +44,14 @@ export default Component.extend({
   hasError: false,
   name: null,
 
-  _checkValidity: task(function* (changeset, snapshot, valuePath, value) {
+  _checkValidity: task(function* (changeset, valuePath, value) {
     yield timeout(DEBOUNCE_TIMEOUT);
+    let snapshot = changeset.snapshot();
     set(changeset, valuePath, value);
     if (!changeset.get(`error.${valuePath}`)) {
       set(this, 'hasError', false);
     } else {
+      // if error, restore changeset to not show error until blur
       changeset.restore(snapshot);
     }
   }).restartable(),
@@ -86,7 +88,7 @@ export default Component.extend({
      */
     checkValidity(changeset, value) {
       const valuePath = get(this, 'valuePath');
-      get(this, '_checkValidity').perform(changeset, changeset.snapshot(), valuePath, value);
+      get(this, '_checkValidity').perform(changeset, valuePath, value);
     }
   }
 });
